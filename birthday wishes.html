@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Aliza</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+}
+
+/* 🌸 BACKGROUND VIDEO */
+.bg-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  opacity:0.2;
+  filter:blur(2px);
+}
+
+/* Light overlay so text is readable */
+body::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,#ffd1dc36,#ffffff50,#ffe6f023);
+  opacity:0.75;
+  z-index:-1;
+}
+
+.scene{
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  opacity:0;
+  transition:opacity 2s ease;
+}
+
+.scene.active{opacity:1}
+
+h1{
+  font-size:3.2rem;
+  margin-bottom:15px;
+}
+
+p{
+  font-size:1.3rem;
+  text-align:center;
+  max-width:80%;
+}
+
+.frame{
+  width:260px;
+  height:260px;
+  border:12px solid #fff;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.2);
+  overflow:hidden;
+  animation:float 6s ease-in-out infinite;
+}
+
+.frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-20px)}
+  100%{transform:translateY(0)}
+}
+
+.lyric{
+  animation:fadeUp 2s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+footer{
+  position:fixed;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+  font-size:.9rem;
+  color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎥 BACKGROUND VIDEO -->
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="background.mp4.mp4" type="video/mp4">
+</video>
+
+<!-- 🎵 MUSIC -->
+<audio id="song" src="WhatsApp Audio 2026-01-16 at 7.26.24 PM.mp3" ></audio>
+
+<!-- SCENES -->
+<div class="scene active">
+  <h1>Happy Birthday Aliza 🎂</h1>
+  <p>Pal pal ye din tumhara ho</p>
+</div>
+
+<div class="scene">
+  <div class="frame">
+    <img src="WhatsApp Image 2026-01-16 at 7.26.24 PM.jpeg">
+  </div>
+  <p class="lyric">Pal pal ye din tumhara hai</p>
+</div>
+
+<div class="scene">
+  <div class="frame">
+    <img src="WhatsApp Image 2026-01-16 at 7.26.25 PM.jpeg">
+  </div>
+  <p class="lyric">Muskaan tumhari pehchaan hai</p>
+</div>
+
+<div class="scene">
+  <p class="lyric">Aliza, ye sirf janamdin nahi</p>
+  <p class="lyric">Ye ek dua ka imtehaan hai</p>
+</div>
+
+<div class="scene">
+  <div class="frame">
+    <img src="WhatsApp Image 2026-01-16 at 7.26.26 PM.jpeg">
+  </div>
+  <p class="lyric">Tum jahan raho, sukoon wahan ho</p>
+</div>
+
+<div class="scene">
+  <h1>Always Smiling ✨</h1>
+  <p>With lots of love 💖</p>
+</div>
+
+<footer>Made specially for Aliza 💐</footer>
+<script>
+const scenes = document.querySelectorAll('.scene');
+let index = 0;
+const song = document.getElementById("song");
+
+setInterval(() => {
+  scenes[index].classList.remove('active');
+  index = (index + 1) % scenes.length;
+  scenes[index].classList.add('active');
+}, 40000);
+
+// Mobile + Chrome FIX
+let started = false;
+document.body.addEventListener("click", () => {
+  if (!started) {
+    song.play().then(() => {
+      started = true;
+    }).catch(err => {
+      console.log("Autoplay blocked:", err);
+    });
+  }
+});
+</script>
+
+
+</body>
+</html>
